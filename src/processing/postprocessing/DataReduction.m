@@ -35,7 +35,7 @@ classdef DataReduction < PostProcessing
                 
                 switch(this.imageGenerationMethod)
                     case 0
-                        [indicesList, pList] = ismember(this.peakList, spectrum.spectralChannels);
+                        [indicesList, pList] = ismember(this.peakDetails(:,2), spectrum.spectralChannels);
 
                         pList(pList == 0) = [];
                         intensities(indicesList) = spectrum.intensities(pList);
@@ -49,7 +49,7 @@ classdef DataReduction < PostProcessing
 %                         intensities(i)
                 end
                 
-                spectrum = SpectralData(this.peakList, intensities);
+                spectrum = SpectralData(this.peakDetails(:,2), intensities);
             end
         end
         
