@@ -266,16 +266,16 @@ classdef MemoryEfficientPCA < DataReduction
                 if(this.processEntireDataset && pixelListIndex == 1)
                     projectedDataRepresentation.setData(scores{pixelListIndex}, coeff{pixelListIndex}, ...
                         RegionOfInterest(dataRepresentation.width, dataRepresentation.height), ...
-                        dataRepresentation.isRowMajor, peakList, [dataRepresentation.name ' (ME PCA)']);
+                        dataRepresentation.isRowMajor, this.peakDetails(:,2), [dataRepresentation.name ' (ME PCA)']);
                 elseif(this.processEntireDataset)
                     projectedDataRepresentation.setData(scores{pixelListIndex}, coeff{pixelListIndex}, rois{pixelListIndex-1}, ...
-                        dataRepresentation.isRowMajor, peakList, [rois{pixelListIndex-1}.getName() ' (ME PCA)']);
+                        dataRepresentation.isRowMajor, this.peakDetails(:,2), [rois{pixelListIndex-1}.getName() ' (ME PCA)']);
                 else
                     dataROI = RegionOfInterest(dataRepresentation.width, dataRepresentation.height);
                     dataROI.addPixels(and(rois{pixelListIndex}.getPixelMask(), dataRepresentation.regionOfInterest.getPixelMask()));
                     
                     projectedDataRepresentation.setData(scores{pixelListIndex}, coeff{pixelListIndex}, dataROI, ...
-                        dataRepresentation.isRowMajor, peakList, [rois{pixelListIndex}.getName() ' (ME PCA)']);
+                        dataRepresentation.isRowMajor, this.peakDetails(:,2), [rois{pixelListIndex}.getName() ' (ME PCA)']);
                 end
                 
                 dataRepresentationList.add(projectedDataRepresentation);
